@@ -2,9 +2,6 @@
 
 This project builds a time-series forecasting pipeline to predict next-step ICU vital signs (HR, MAP, SpO₂) from past observations using an LSTM model. It includes patient-level splitting to avoid leakage, a naive baseline, and a deployable Streamlit app suitable for Hugging Face Spaces.
 
-## ⚠️ Disclaimer
-This project is for educational and research demonstration only. Do not use for clinical decision-making. Do not upload real patient data to public repositories or demos.
-
 ## Data Format
 CSV columns required:
 - `patient_id`
