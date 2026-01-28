@@ -1,5 +1,5 @@
-import json
 import os
+import json
 from typing import Dict, Tuple, List
 
 import numpy as np
