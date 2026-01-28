@@ -10,6 +10,7 @@ class Config:
     # Windowing
     window_size: int = 24      # T
     horizon: int = 1           # next-step forecasting
+    forecast_steps: int = 6    # number of future steps to predict
 
     # Splits (by patient_id)
     train_ratio: float = 0.70
@@ -18,7 +19,7 @@ class Config:
 
     # Training
     batch_size: int = 64
-    epochs: int = 50
+    epochs: int = 100
     learning_rate: float = 1e-3
     patience: int = 6
 
