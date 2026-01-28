@@ -7,7 +7,6 @@ def load_scaler(path: str) -> dict:
         return json.load(f)
 
 def zscore_transform(x: np.ndarray, scaler: dict) -> np.ndarray:
-    # x shape (..., F) with feature order scaler["feature_cols"]
     stats = scaler["feature_stats"]
     cols = scaler["feature_cols"]
     out = x.copy().astype(np.float32)
@@ -30,11 +29,11 @@ def zscore_inverse(x: np.ndarray, scaler: dict) -> np.ndarray:
 def load_model(model_path: str):
     return tf.keras.models.load_model(model_path)
 
-def predict_next(model, window: np.ndarray) -> np.ndarray:
+def predict_multi_step(model, window_scaled: np.ndarray) -> np.ndarray:
     """
-    window: (T, F) scaled
-    returns: (F,) scaled
+    window_scaled: (T, F)
+    returns: (H, F) scaled
     """
-    x = window[np.newaxis, :, :].astype(np.float32)
-    y = model.predict(x, verbose=0)[0]
+    x = window_scaled[np.newaxis, :, :].astype(np.float32)
+    y = model.predict(x, verbose=0)[0]   # (H, F)
     return y
